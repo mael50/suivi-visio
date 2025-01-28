@@ -9,7 +9,40 @@ Une application web permettant le suivi géographique des utilisateurs en temps 
 - 🎥 Appels vidéo peer-to-peer via WebRTC
 - 🔄 Communication temps réel via WebSocket
 - 📊 Interface utilisateur responsive
-- 
+
+## Architecture
+
+```mermaid
+graph TB
+    subgraph Backend
+    S[Server.js] --> WS[WebSocket Handler]
+    S --> R[REST API Routes]
+    WS --> UM[User Model]
+    R --> UM
+    end
+
+    subgraph Frontend
+    C[Client Browser] --> WSM[WebSocket Manager]
+    C --> LM[Location Manager]
+    C --> MM[Map Manager]
+    C --> CM[Call Manager]
+    
+    WSM --> APP[App.js]
+    LM --> APP
+    MM --> APP
+    CM --> APP
+    end
+
+    WSM <--> WS
+    R <--> C
+    
+    classDef primary fill:#DBE7C9,stroke:#294B2A,stroke-width:2px;
+    classDef secondary fill:#f1f1f1,stroke:#475569,stroke-width:2px;
+    
+    class S,WS,R,UM primary;
+    class C,WSM,LM,MM,CM,APP secondary;
+```
+
 ## Structure du Code
 
 ```
