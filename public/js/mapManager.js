@@ -94,8 +94,28 @@ class MapManager {
 
         users.forEach(user => {
             const li = document.createElement('li');
-            li.textContent = user.username;
             li.className = user.username === currentUsername ? 'current-user' : '';
+
+            // Conteneur pour les infos utilisateur
+            const userInfo = document.createElement('div');
+            userInfo.className = 'user-info';
+            userInfo.textContent = user.username;
+            li.appendChild(userInfo);
+
+            // Icône de téléphone à droite
+            if (user.username !== currentUsername) {
+                const callIcon = document.createElement('div');
+                callIcon.className = 'call-icon';
+                callIcon.innerHTML = '📞';
+                callIcon.title = `Appeler ${user.username}`;
+                callIcon.onclick = (e) => {
+                    e.stopPropagation();
+                    if (this.onCallUser) {
+                        this.onCallUser(user.username);
+                    }
+                };
+                li.appendChild(callIcon);
+            }
 
             li.addEventListener('click', () => {
                 const marker = this.userMarkers[user.username];

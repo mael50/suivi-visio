@@ -189,13 +189,36 @@ h1 {
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
-.user-list li:hover {
+.user-list li .call-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 8px;
 }
 
-.user-list li::before {
+.user-list li .call-icon:hover {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.user-list li .user-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.user-list li .user-info::before {
     content: '';
     display: inline-block;
     width: 10px;
@@ -203,6 +226,14 @@ h1 {
     border-radius: 50%;
     margin-right: 8px;
     background-color: var(--primary-hover);
+}
+
+.user-list li.current-user .user-info::before {
+    background-color: #4CAF50;
+}
+
+.user-list li:hover {
+    background-color: var(--primary-color);
 }
 
 .user-list li.current-user::before {
@@ -374,8 +405,8 @@ h1 {
 
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
-        margin: 5%;
+        padding: 0.5rem;
+        margin: 10px;
     }
 
     h1 {
