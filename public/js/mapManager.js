@@ -12,6 +12,7 @@ class MapManager {
         this.map = null;
         this.userMarkers = {};
         this.onCallUser = onCallUser;
+        this.updateLegend = this.updateLegend.bind(this);
 
         this.currentUserIcon = L.divIcon({
             className: 'custom-marker',
@@ -76,6 +77,39 @@ class MapManager {
     }
 
     /**
+     * Met à jour la légende des utilisateurs connectés.
+     * @param {Array<Object>} users - Tableau d'objets utilisateur contenant les informations de localisation
+     * @param {string} currentUsername - Nom d'utilisateur de l'utilisateur actuel
+     * @returns {void}
+     * @description
+     * Met à jour la liste des utilisateurs connectés et met en surbrillance l'utilisateur actuel.
+     * Lorsqu'un nom d'utilisateur est cliqué, la carte se centre sur le marqueur de l'utilisateur.
+     */
+    updateLegend(users, currentUsername) {
+        const userList = document.getElementById('userList');
+        const userCount = document.getElementById('userCount');
+
+        userList.innerHTML = '';
+        userCount.textContent = users.length;
+
+        users.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = user.username;
+            li.className = user.username === currentUsername ? 'current-user' : '';
+
+            li.addEventListener('click', () => {
+                const marker = this.userMarkers[user.username];
+                if (marker) {
+                    this.map.setView(marker.getLatLng(), 15);
+                    marker.openPopup();
+                }
+            });
+
+            userList.appendChild(li);
+        });
+    }
+
+    /**
      * Met à jour les marqueurs sur la carte en fonction des utilisateurs.
      * Préserve l'état des popups lors de la mise à jour.
      * @param {Array<Object>} users - Tableau d'objets utilisateur contenant les informations de localisation
@@ -101,6 +135,7 @@ class MapManager {
             }
         });
 
+        this.updateLegend(users, currentUsername);
         this.fitAllMarkers();
     }
 

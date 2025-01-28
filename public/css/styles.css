@@ -31,6 +31,10 @@ body {
     align-items: center;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* ----------- STYLE LOGIN ----------- */
 
 .container {
@@ -66,15 +70,6 @@ h1 {
     color: var(--text-primary);
     letter-spacing: -0.025em;
     text-align: center;
-}
-
-#map {
-    height: 70vh;
-    width: 100%;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
 }
 
 .login-form {
@@ -140,7 +135,6 @@ h1 {
 }
 
 /* ----------- STYLE MAP ----------- */
-
 .map-container {
     display: none;
     position: fixed;
@@ -154,77 +148,67 @@ h1 {
     display: block;
 }
 
-#map:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
-}
-
-/* .login-form {
-    margin: 0 auto;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 3rem;
-    background: white;
-    border-radius: var(--radius-md);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.login-form:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-.login-form input {
-    padding: 1.2rem 1.5rem;
-    border: 2px solid #e2e8f0;
-    border-radius: var(--radius-sm);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--background);
+#map {
+    height: 100vh;
     width: 100%;
-}
-
-.login-form input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-    transform: scale(1.01);
-}
-
-.login-form input:hover {
-    border-color: var(--primary-color);
-}
-
-.login-form button {
-    padding: 1.2rem 2rem;
-    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
-    color: white;
-    border: none;
-    border-radius: var(--radius-sm);
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
     overflow: hidden;
 }
 
-.login-form button:hover {
-    background: linear-gradient(to right, var(--primary-hover), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
+.map-legend {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    z-index: 1000;
+    min-width: 200px;
+    max-width: 300px;
 }
 
-.login-form button:active {
-    transform: translateY(1px);
-} */
-
-.hidden {
-    display: none !important;
+.map-legend h3 {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--primary-color);
 }
+
+.user-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list li {
+    padding: 8px 12px;
+    margin: 4px 0;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.user-list li:hover {
+    background-color: var(--primary-color);
+}
+
+.user-list li::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    background-color: var(--primary-hover);
+}
+
+.user-list li.current-user::before {
+    background-color: #4CAF50;
+}
+
 
 .custom-marker {
     position: relative;

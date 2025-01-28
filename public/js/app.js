@@ -60,11 +60,10 @@ class App {
         }
 
         document.getElementById('loader').style.display = 'flex';
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('map').classList.remove('hidden');
+        document.getElementById('loginContainer').classList.add('hidden');
+        document.getElementById('mapContainer').classList.add('visible');
 
         if (this.locationManager.startTracking()) {
-            // Envoyer la position initiale + démarrer le suivi continu
             navigator.geolocation.getCurrentPosition((position) => {
                 const locationData = {
                     latitude: position.coords.latitude,
