@@ -463,6 +463,10 @@ h1 {
         padding: 0.75rem 1.25rem;
         font-size: 0.875rem;
     }
+
+    .map-legend {
+        top: 40px;
+    }
 }
 
 @media (max-width: 480px) {

@@ -91,3 +91,6 @@ Une application web permettant le suivi géographique des utilisateurs en temps 
    - Ouvrir un navigateur
    - Accéder à `http://localhost:8080`
    - Autoriser la géolocalisation si demandé par le navigateur
+
+5. **Démo de l'application**
+   <video src="./videos/demo.mp4" width="100%" controls></video>
