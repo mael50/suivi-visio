@@ -190,7 +190,8 @@ function handleCallRejected(wss, data) {
     const targetClient = findClientByUsername(wss, data.target);
     if (targetClient) {
         targetClient.send(JSON.stringify({
-            type: 'call_rejected'
+            type: 'call_rejected',
+            from: data.username
         }));
     }
 }

@@ -334,15 +334,25 @@ class CallManager {
     }
 
     /**
-     * Rejects an incoming call.
-     * @param {string} callerUsername - Username of the caller to reject
+     * Rejette un appel entrant
+     * @param {string} callerUsername - Nom d'utilisateur de l'appelant
      */
     async rejectCall(callerUsername) {
         this.log('Rejet de l\'appel entrant');
         this.websocket.send({
-            type: 'call_reject',
-            target: callerUsername
+            type: 'call_rejected',
+            target: callerUsername,
+            username: this.currentCall?.username // Ajout du nom d'utilisateur qui rejette
         });
+    }
+
+    /**
+     * Gère le rejet d'un appel
+     * @param {string} from - Nom d'utilisateur qui a rejeté l'appel
+     */
+    handleReject() {
+        alert(`L'interlocuteur a rejeté votre appel`);
+        this.cleanupCall();
     }
 
     /**

@@ -117,8 +117,10 @@ class MapManager {
      * @returns {void}
      */
     updateMarkers(users, currentUsername) {
-        // Sauvegarder l'état des popups
         const openPopups = {};
+        const currentCenter = this.map.getCenter();
+        const currentZoom = this.map.getZoom();
+
         Object.entries(this.userMarkers).forEach(([username, marker]) => {
             if (marker.isPopupOpen()) {
                 openPopups[username] = true;
@@ -136,7 +138,10 @@ class MapManager {
         });
 
         this.updateLegend(users, currentUsername);
-        this.fitAllMarkers();
+
+        this.map.setView(currentCenter, currentZoom, {
+            animate: false
+        });
     }
 
     /**
